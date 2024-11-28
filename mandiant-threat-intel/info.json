@@ -1,13 +1,13 @@
 {
   "name": "mandiant-threat-intel",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "label": "Mandiant Threat Intelligence",
   "category": "Threat Intelligence",
   "description": "Mandiant Threat Intelligence provides automated access to indicators of compromise (IOCs) — IP addresses, domain names, URLs threat actors are using, via the indicators, allows access to full length finished intelligence in the reports, allows for notificaiton of threats to brand and keyword monitoring via the alerts, and finally allows searching for intelligence on the adversary with the search. This connector facilitates automated operations such as indicators, reports, alerts, and search collections.<br/><br/>This connector has a dependency on the <a href=\"/content-hub/all-content/?contentType=solutionpack&amp;tag=ThreatIntelManagement\" target=\"_blank\" rel=\"noopener\">Threat Intel Management Solution Pack</a>. Install the Solution Pack before enabling ingestion of Threat Feeds from this source.",
   "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,
-  "help_online": "https://docs.fortinet.com/document/fortisoar/1.1.0/mandiant-threat-intelligence/650/mandiant-threat-intelligence-v1-1-0",
+  "help_online": "",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
   "ingestion_supported": true,
@@ -125,18 +125,15 @@
             "id": "",
             "name": "",
             "type": "",
-            "labels": [
-            ],
+            "labels": [],
             "created": "",
             "revoked": "",
             "modified": "",
             "is_family": "",
             "description": "",
             "spec_version": "",
-            "malware_types": [
-            ],
-            "object_marking_refs": [
-            ]
+            "malware_types": [],
+            "object_marking_refs": []
           },
           {
             "id": "",
@@ -163,8 +160,7 @@
           {
             "id": "",
             "type": "",
-            "labels": [
-            ],
+            "labels": [],
             "created": "",
             "pattern": "",
             "revoked": "",
@@ -174,27 +170,22 @@
             "valid_until": "",
             "pattern_type": "",
             "spec_version": "",
-            "indicator_types": [
-            ],
-            "object_marking_refs": [
-            ],
+            "indicator_types": [],
+            "object_marking_refs": [],
             "x_fireeye_com_metadata": {
-              "subscriptions": [
-              ]
+              "subscriptions": []
             }
           },
           {
             "id": "",
             "name": "",
             "type": "",
-            "labels": [
-            ],
+            "labels": [],
             "created": "",
             "revoked": "",
             "modified": "",
             "spec_version": "",
-            "infrastructure_types": [
-            ]
+            "infrastructure_types": []
           },
           {
             "id": "",
@@ -224,8 +215,7 @@
             "modified": "",
             "spec_version": "",
             "identity_class": "",
-            "object_marking_refs": [
-            ]
+            "object_marking_refs": []
           }
         ],
         "spec_version": ""
@@ -701,6 +691,85 @@
         "spec_version": ""
       },
       "enabled": true
+    },
+    {
+      "title": "Get Indicator Reputation",
+      "operation": "get_reputation_of_indicators",
+      "category": "investigation",
+      "annotation": "get_reputation_of_indicators",
+      "description": "Retrieves reputation information from Mandiant Threat Intelligence based on the indicator value you have specified.",
+      "parameters": [
+        {
+          "title": "Indicator Value",
+          "type": "text",
+          "name": "indicatorValue",
+          "description": "Specify the indicator value whose reputation information you want to retrieve from Mandiant Threat Intelligence.",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": "1.1.1.1",
+          "tooltip": "Indicator whose reputation information you want to retrieve."
+
+        }
+      ],
+      "output_schema": {},
+      "enabled": true
+    },
+    {
+      "operation": "execute_an_api_call",
+      "title": "Execute an API Request",
+      "annotation": "execute_an_api_call",
+      "description": "Sends an API request to any Mandiant Threat Intelligence API endpoint based on specified HTTP method, endpoint, and other input parameters that you have specified, enabling flexible API interactions tailored to user needs. ",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "method",
+          "title": "HTTP Method",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Select an HTTP action for the request. You can select from the following options:  \n\nDELETE \n\nGET \n\nPATCH \n\nPOST \n\nPUT ",
+          "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ]
+        },
+        {
+          "title": "Endpoint",
+          "name": "endpoint",
+          "tooltip": "Specify the target API URL path for example: collections/alerts/objects",
+          "description": "Specify the target API URL path for the request. for example: collections/alerts/objects",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true
+        },
+        {
+          "title": "Query Parameters",
+          "name": "query_params",
+          "description": "(Optional) Specify any optional parameters to add to the URL and refine the request. ",
+          "type": "json",
+          "visible": true,
+          "editable": true,
+          "required": false
+        },
+        {
+          "name": "payload",
+          "title": "Request Payload",
+          "type": "json",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "(Optional) Specify data, as JSON, to be sent as the request payload (typically for POST or PUT requests). "
+        }
+      ],
+      "output_schema": {}
     }
   ]
 }

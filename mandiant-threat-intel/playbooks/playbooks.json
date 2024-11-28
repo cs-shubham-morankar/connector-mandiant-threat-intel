@@ -3,7 +3,7 @@
   "data": [
     {
       "@type": "WorkflowCollection",
-      "name": "Sample - Mandiant Threat Intelligence - 1.1.0",
+      "name": "Sample - Mandiant Threat Intelligence - 1.2.0",
       "description": "Sample playbooks for \"Mandiant Threat Intelligence\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
       "image": null,
@@ -46,7 +46,7 @@
                   "status": "",
                   "added_after": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "mandiant-threat-intel",
                 "operation": "fetch_indicators",
                 "operationTitle": "Get Indicators",
@@ -115,6 +115,84 @@
         },
         {
           "@type": "Workflow",
+          "uuid": "98f74344-aa9a-468d-b15d-af69d2adfc4f",
+          "collection": "/api/3/workflow_collections/8a65035a-d913-4aa4-af29-c809a66000fe",
+          "triggerLimit": null,
+          "description": "Retrieves reputation information from Mandiant Threat Intelligence based on the indicator value you have specified.",
+          "name": "Get Indicator Reputation",
+          "tag": "#Mandiant Threat Intelligence",
+          "recordTags": [
+            "mandiant-threat-intel"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/45256a42-de46-4669-9d0b-68eaa882072f",
+          "steps": [
+            {
+              "uuid": "45256a42-de46-4669-9d0b-68eaa882072f",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "27f418d5-a92b-4e80-9cdc-9a32add4fde8",
+                "title": "Mandiant Threat Intelligence: Get Indicator Reputation",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "3e72643f-d03a-4a20-abc9-5a865bec70fa",
+              "@type": "WorkflowStep",
+              "name": "Get Indicator Reputation",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Mandiant Threat Intelligence",
+                "config": "",
+                "params": {
+                  "indicatorValue": "1.1.1.1"
+                },
+                "version": "1.2.0",
+                "connector": "mandiant-threat-intel",
+                "operation": "get_reputation_of_indicators",
+                "operationTitle": "Get Indicator Reputation"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "b4d6a74e-4207-4d51-a336-87a27421bbbc",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Indicator Reputation",
+              "sourceStep": "/api/3/workflow_steps/45256a42-de46-4669-9d0b-68eaa882072f",
+              "targetStep": "/api/3/workflow_steps/3e72643f-d03a-4a20-abc9-5a865bec70fa"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
           "triggerLimit": null,
           "name": "Get Alerts",
           "aliasName": null,
@@ -147,7 +225,7 @@
                   "alert_severity": "",
                   "alert_categories": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "mandiant-threat-intel",
                 "operation": "get_alerts",
                 "operationTitle": "Get Alerts",
@@ -277,7 +355,7 @@
                   "malware_name": "",
                   "subscription": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "mandiant-threat-intel",
                 "operation": "get_reports",
                 "operationTitle": "Get Reports",
@@ -374,7 +452,7 @@
                   "status": "",
                   "added_after": ""
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "mandiant-threat-intel",
                 "operation": "get_indicators",
                 "operationTitle": "Get Indicators",
@@ -444,7 +522,7 @@
                   "connected_objects": "[]",
                   "include_connected_objects": false
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "mandiant-threat-intel",
                 "operation": "search_collections",
                 "operationTitle": "Search Collections",
@@ -704,7 +782,7 @@
                   "status": "{{vars.status}}",
                   "added_after": "{{vars.lastPullTime}}"
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "mandiant-threat-intel",
                 "operation": "fetch_indicators",
                 "operationTitle": "Fetch Indicators",
@@ -781,7 +859,7 @@
                   "status": "{{vars.status}}",
                   "added_after": "{{vars.lastPullTime}}"
                 },
-                "version": "1.1.0",
+                "version": "1.2.0",
                 "connector": "mandiant-threat-intel",
                 "operation": "fetch_indicators",
                 "operationTitle": "Get Indicators",
@@ -1017,6 +1095,82 @@
             "create",
             "fetch",
             "mandiant-threat-intel"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "dfe690e2-07df-4288-95c0-f7e57470a516",
+          "collection": "/api/3/workflow_collections/8a65035a-d913-4aa4-af29-c809a66000fe",
+          "triggerLimit": null,
+          "description": "Sends an API request to any Mandiant Threat Intelligence API endpoint based on specified HTTP method, endpoint, and other input parameters that you have specified, enabling flexible API interactions tailored to user needs. ",
+          "name": "Execute an API Request",
+          "tag": "#Mandiant Threat Intelligence",
+          "recordTags": [
+            "mandiant-threat-intel"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/71a56c30-ea0e-46fb-b971-1f781e2cd9be",
+          "steps": [
+            {
+              "uuid": "71a56c30-ea0e-46fb-b971-1f781e2cd9be",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "dd96c2ba-3460-4ee6-a486-d7b0c971c795",
+                "title": "Mandiant Threat Intelligence: Execute an API Request",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "9a802795-fa3d-43ad-a296-61d325c0e36a",
+              "@type": "WorkflowStep",
+              "name": "Execute an API Request",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Mandiant Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.2.0",
+                "connector": "mandiant-threat-intel",
+                "operation": "execute_an_api_call",
+                "operationTitle": "Execute an API Request"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "914b235f-dd80-4f87-87f6-72005cb5e827",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Execute an API Request",
+              "sourceStep": "/api/3/workflow_steps/71a56c30-ea0e-46fb-b971-1f781e2cd9be",
+              "targetStep": "/api/3/workflow_steps/9a802795-fa3d-43ad-a296-61d325c0e36a"
+            }
           ]
         }
       ]
